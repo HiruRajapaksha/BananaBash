@@ -1,7 +1,7 @@
 <?php
 
 include '../Controller/config.php';
-if(!$_SESSION['loggedIn']){
+if (!$_SESSION['loggedIn']) {
     redirect("login.php");
 }
 ?>
@@ -19,16 +19,92 @@ if(!$_SESSION['loggedIn']){
     <script src="../Static Assets/js/bgAudio.js"></script>
 
     <title>QUEEZY BUNCH</title>
+    <style>
+        body,
+        html {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .banana {
+            position: absolute;
+            z-index: 8;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+        }
+
+        .banana-left {
+            bottom: 10%;
+            left: -20%;
+            transform: rotate(-8deg);
+            max-width: 30%;
+            animation: slideInLeft 1.5s ease-out forwards;
+        }
+
+        .banana-right {
+            bottom: 25%;
+            right: -30%;
+            transform: rotate(10deg);
+            max-width: 32%;
+            animation: slideInRight 1.5s ease-out forwards;
+        }
+
+        .banana:hover {
+            transform: rotate(2deg) scale(1.1);
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                left: -20%;
+                opacity: 0;
+            }
+
+            100% {
+                left: 1%;
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                right: -20%;
+                opacity: 0;
+            }
+
+            100% {
+                right: 5%;
+                opacity: 1;
+            }
+        }
+
+        .startBtn {
+            background-color: #38A739;
+            color: #8ED06C;
+            font-weight: 500;
+            font-size: 30px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 37px;
+            cursor: pointer;
+            transition: all 600ms ease;
+        }
+
+        .startBtn:hover {
+            background-color: #57982A;
+            color: #D9D9D9;
+            transform: scale(1.2);
+            box-shadow: 0 0 40px rgba(87, 152, 42, 0.8);
+        }
+    </style>
 </head>
 
 <body>
     <div class="image-container">
-        <nav class="navbar">
+        <nav class="navbar" style="z-index: 9;">
             <h1 class="logo">QUEZZY BUNCH</h1>
             <div class="links">
-            <!-- <a href="howtoplay.php">HOW TO PLAY</a> -->
-            <?php if($_SESSION['loggedIn']){ ?>
-                  <a href="profile.php">Hi, <?=$_SESSION['user_name'];?></a>
+                <?php if ($_SESSION['loggedIn']) { ?>
+                    <a href="profile.php">Hi, <?= $_SESSION['user_name']; ?></a>
                 <?php } ?>
                 <a href="scores.php"><i class="bi bi-123 custom-icon"></i></a>
                 <a href="../Controller/logout.php"><i class="bi bi-power custom-icon"></i></a>
@@ -37,17 +113,22 @@ if(!$_SESSION['loggedIn']){
         </nav>
         <div class="container">
             <div class="content">
-                <img id="quiz-image" src="../Static Assets/assets/images/icon quiz.png" alt="">
-                <h1 class="indexTitle">Let’s Play And Win!</h1>
-                <?php if($_SESSION['loggedIn']){ ?>
-                  <a href="howtoplay.php"><button class="startBtn" id="startbtn">Start Playing</button></a>
+                <!-- <img id="quiz-image" src="../Static Assets/assets/images/icon quiz.png" alt=""> -->
+                <!-- <h1 class="indexTitle">Let’s Play And Win!</h1> -->
+                <?php if ($_SESSION['loggedIn']) { ?>
+                    <a href="howtoplay.php"><button class="startBtn" id="startbtn">Start Playing</button></a>
                 <?php } ?>
             </div>
         </div>
+        <!-- Banana Images -->
+        <img src="../Static Assets/assets/images/indexBanana1.png" alt="Banana 1" class="banana banana-left">
+        <img src="../Static Assets/assets/images/indexBanana2.png" alt="Banana 2" class="banana banana-right">
     </div>
+
 
     <audio id="music">
         <source type="audio/mp3" src="../Static Assets/../Static Assets/assets/audio/bg_music.mp3">
     </audio>
 </body>
+
 </html>
