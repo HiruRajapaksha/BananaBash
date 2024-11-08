@@ -196,7 +196,7 @@ if(isset($_GET['new'])){
 <body>
     <div class="image-container">
         <nav class="navbar">
-            <h1 class="logo">QUEZZY BUNCH</h1>
+            <h1 class="logo">BANANA BASH</h1>
             <div class="links">
                 <a href="index.php"><i class="bi bi-house custom-icon"></i></i></a>
                 <a href="scores.php"><i class="bi bi-123 custom-icon"></i></a>

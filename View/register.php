@@ -22,7 +22,7 @@ include '../Controller/registerHandler.php';
 
     <div class="image-container">
         <nav class="navbar">
-            <h1 class="logo">QUEZZY BUNCH</h1>
+            <h1 class="logo">BANANA BASH</h1>
             <div class="links">
                 <button class="" id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
             </div>

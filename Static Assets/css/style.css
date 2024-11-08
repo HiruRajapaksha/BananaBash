@@ -166,7 +166,7 @@ body {
     height: 5vh;
     padding: 10px 15px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 50px;
     outline: none;
     background: none;
     outline: none;
@@ -192,10 +192,10 @@ body {
 }
 
 .loginbtn:hover {
-    background-color: #9747FF;
+    background-color: #4EBA16;
     color: #D9D9D9;
     transform: scale(1.2);
-    box-shadow: 0 0 40px rgba(166, 0, 255, 0.8);
+    box-shadow: 0 0 40px rgba(34, 140, 34, 0.8);
 
 
 }

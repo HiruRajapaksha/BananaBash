@@ -95,13 +95,14 @@ if (!$_SESSION['loggedIn']) {
             transform: scale(1.2);
             box-shadow: 0 0 40px rgba(87, 152, 42, 0.8);
         }
+        
     </style>
 </head>
 
 <body>
     <div class="image-container">
         <nav class="navbar" style="z-index: 9;">
-            <h1 class="logo">QUEZZY BUNCH</h1>
+            <h1 class="logo">BANANA BASH</h1>
             <div class="links">
                 <?php if ($_SESSION['loggedIn']) { ?>
                     <a href="profile.php">Hi, <?= $_SESSION['user_name']; ?></a>

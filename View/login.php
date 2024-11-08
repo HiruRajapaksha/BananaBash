@@ -25,80 +25,110 @@ include '../Controller/loginHandler.php';
         }
 
         @keyframes popUpAndDownLeft {
-    0% {
-        bottom: -10%; /* Start off-screen at the bottom */
-        opacity: 0; /* Start hidden */
-        z-index: 0; /* Default z-index */
-        transform: translateX(-50%) scale(0.7) rotate(0deg); /* Smaller size, no rotation */
-    }
+            0% {
+                bottom: -10%;
+                opacity: 0;
+                z-index: 0;
+                transform: translateX(-50%) scale(0.7) rotate(0deg);
+            }
 
-    50% {
-        bottom: 50%; /* Move to the middle of the screen */
-        opacity: 1; /* Fully visible */
-        z-index: 10; /* Bring to the front */
-        transform: translateX(-50%) scale(2) rotate(-15deg); /* Larger size and rotate slightly */
-    }
+            50% {
+                bottom: 50%;
+                opacity: 1;
+                z-index: 10;
+                transform: translateX(-50%) scale(2) rotate(-15deg);
+            }
 
-    100% {
-        bottom: -10%; /* Return to off-screen at the bottom */
-        opacity: 0; /* Hide again */
-        z-index: 0; /* Reset z-index */
-        transform: translateX(-50%) scale(0.7) rotate(0deg); /* Back to original size */
-    }
-}
+            100% {
+                bottom: -10%;
+                opacity: 0;
+                z-index: 0;
+                transform: translateX(-50%) scale(0.7) rotate(0deg);
+            }
+        }
 
-@keyframes popUpAndDownRight {
-    0% {
-        bottom: -10%; /* Start off-screen at the bottom */
-        opacity: 0; /* Start hidden */
-        z-index: 0; /* Default z-index */
-        transform: translateX(-50%) scale(0.7) rotate(0deg); /* Smaller size, no rotation */
-    }
+        @keyframes popUpAndDownRight {
+            0% {
+                bottom: -10%;
+                opacity: 0;
+                z-index: 0;
+                transform: translateX(-50%) scale(0.7) rotate(0deg);
+            }
 
-    50% {
-        bottom: 50%; /* Move to the middle of the screen */
-        opacity: 1; /* Fully visible */
-        z-index: 10; /* Bring to the front */
-        transform: translateX(-50%) scale(2) rotate(15deg); /* Larger size and rotate slightly */
-    }
+            50% {
+                bottom: 50%;
+                opacity: 1;
+                z-index: 10;
+                transform: translateX(-50%) scale(2) rotate(15deg);
+            }
 
-    100% {
-        bottom: -10%; /* Return to off-screen at the bottom */
-        opacity: 0; /* Hide again */
-        z-index: 0; /* Reset z-index */
-        transform: translateX(-50%) scale(0.7) rotate(0deg); /* Back to original size */
-    }
-}
+            100% {
+                bottom: -10%;
+                opacity: 0;
+                z-index: 0;
+                transform: translateX(-50%) scale(0.7) rotate(0deg);
+            }
+        }
 
-.popUpImage-left {
-    position: absolute;
-    bottom: -10%; /* Initially off-screen */
-    left: 20%; /* Place on the left side */
-    transform: translateX(-50%); /* Center horizontally */
-    width: 250px; /* Increased base size */
-    height: auto;
-    z-index: 0; /* Default z-index */
-    animation: popUpAndDownLeft 3s ease-in-out infinite; /* Apply the left animation */
-}
+        .popUpImage-left {
+            position: absolute;
+            bottom: -10%;
+            left: 20%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: auto;
+            z-index: 0;
+            animation: popUpAndDownLeft 6s ease-in-out infinite;
+            animation-delay: 0s;
+        }
 
-.popUpImage-right {
-    position: absolute;
-    bottom: -10%; /* Initially off-screen */
-    right: 20%; /* Place on the right side */
-    transform: translateX(-50%); /* Center horizontally */
-    width: 250px; /* Increased base size */
-    height: auto;
-    z-index: 0; /* Default z-index */
-    animation: popUpAndDownRight 3s ease-in-out infinite; /* Apply the right animation */
-}
+        .popUpImage-right {
+            position: absolute;
+            bottom: -25%;
+            right: 1%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: auto;
+            z-index: 0;
+            animation: popUpAndDownRight 6s ease-in-out infinite;
+            animation-delay: 4s;
+        }
 
+        .form-wrapper {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30%;
+            height: 80vh;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.421);
+            border-radius: 42px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+
+            animation: backgroundTransition 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundTransition {
+            0% {
+                background-color: rgba(255, 255, 255, 0.221);
+            }
+
+            100% {
+                background-color: #98962624;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="image-container">
         <nav class="navbar">
-            <h1 class="logo">QUEZZY BUNCH</h1>
+            <h1 class="logo">BANANA BASH</h1>
             <div class="links">
                 <button class="" id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
             </div>
@@ -106,7 +136,7 @@ include '../Controller/loginHandler.php';
 
         <div class="container">
             <div class="form-wrapper">
-                <h1 class="text-center">QUEZZY BUNCH</h1>
+                <h1 class="text-center">BANANA BASH</h1>
                 <h3 class="text-center">WELCOME</h3>
                 <form class="form-align" method="post">
                     <div class="form-group">
@@ -129,8 +159,9 @@ include '../Controller/loginHandler.php';
             </div>
         </div>
     </div>
-    <!-- <img src="../Static Assets/assets/images/suddenBanana.png" alt="Pop-Up Image" class="popUpImage"> -->
     <img src="../Static Assets/assets/images/suddenBanana.png" alt="Pop-Up Image Left" class="popUpImage-left">
+    <img src="../Static Assets/assets/images/suddenBanana.png" alt="Pop-Up Image Right" class="popUpImage-right">
+
 
 
     <audio id="music">
