@@ -4,11 +4,12 @@ if (!$_SESSION['loggedIn']) {
     redirect("login.php");
 }
 
-if(isset($_GET['new'])){
+if (isset($_GET['new'])) {
     echo '<script>localStorage.removeItem("timeLeft");</script>';
     echo '<script>localStorage.removeItem("score");</script>';
     echo '<script>localStorage.removeItem("numQuestions");</script>';
     echo '<script>localStorage.removeItem("currentLevel");</script>';
+    echo '<script>localStorage.removeItem("streakCount");</script>';
 
     echo '<script>const currentURL = new URL(window.location.href);</script>';
     echo '<script>const searchParams = new URLSearchParams(currentURL.search);</script>';
@@ -16,7 +17,6 @@ if(isset($_GET['new'])){
     echo '<script>history.replaceState({}, "", `${currentURL.pathname}?${searchParams.toString()}`);</script>';
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,11 +32,41 @@ if(isset($_GET['new'])){
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>QUEEZY BUNCH</title>
+    <style>
+        /* Custom styles for the progress bar */
+        .progress-bar {
+            background-color: purple !important;
+            color: white !important;
+        }
+        /* Animation for congratulations */
+        @keyframes confettiAnimation {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+        .confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            display: none; /* Hidden initially */
+        }
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: purple;
+            animation: confettiAnimation linear infinite;
+        }
+    </style>
     <script>
-        let timeLeft = localStorage.getItem('timeLeft') || 45;
-        let score = localStorage.getItem('score') || 0;
-        let numQuestions = localStorage.getItem('numQuestions') || 1;
-        let currentLevel = localStorage.getItem('currentLevel') || 1;
+        let timeLeft = parseInt(localStorage.getItem('timeLeft')) || 45;
+        let score = parseInt(localStorage.getItem('score')) || 0;
+        let numQuestions = parseInt(localStorage.getItem('numQuestions')) || 1;
+        let currentLevel = parseInt(localStorage.getItem('currentLevel')) || 1;
+        let streakCount = parseInt(localStorage.getItem('streakCount')) || 0;
         let timer;
         let imgApi;
         let solution;
@@ -50,25 +80,17 @@ if(isset($_GET['new'])){
             document.getElementById("score").textContent = score;
             document.getElementById("timer").textContent = timeLeft;
             document.getElementById("level-no").textContent = currentLevel;
+            updateStreakProgressBar();
         }
 
         function handleTimeOut() {
             clearInterval(timer);
-            timeOutSound.play(); //play tone when time is up
+            timeOutSound.play();
             Swal.fire({
-                title: "Time's UP !",
+                title: "Time's UP!",
                 text: "Time's up! Game Over.",
                 icon: "error"
             });
-
-            if (currentLevel > 1) {
-                Swal.fire({
-                    title: "Level Passed",
-                    text: "Congratulations! You have completed Level " + (currentLevel - 1) + ".",
-                    icon: "success"
-                });
-            }
-
             resetGame();
         }
 
@@ -79,20 +101,30 @@ if(isset($_GET['new'])){
                     if (answer == solution) {
                         score++;
                         numQuestions++;
+                        streakCount++;
+                        console.log("Streak Count:", streakCount);
                         updateUI();
 
-                        if (numQuestions > 3) { //level passing condition
+                        if (streakCount === 3) { // Trigger streak reward
+                            console.log("Triggering Streak Popup");
+                            displayStreakPopup();
+                            return; // Stop further execution to show streak popup
+                        }
+
+                        if (numQuestions > 3) {
                             handleCorrectAnswer();
                         } else {
                             fetchImage();
                         }
-                        correctAnsSound.play(); //play tone when asnwer is correct
+                        correctAnsSound.play();
                         Swal.fire({
-                            title: "Answered !",
+                            title: "Answered!",
                             icon: "success"
                         });
                     } else {
-                        wrongAnsSound.play(); //play tone when asnwer is wrong
+                        streakCount = 0; // Reset streak on wrong answer
+                        updateStreakProgressBar();
+                        wrongAnsSound.play();
                         Swal.fire({
                             title: "Wrong Answer",
                             text: "That answer is wrong",
@@ -108,7 +140,7 @@ if(isset($_GET['new'])){
                 }
             } else {
                 Swal.fire({
-                    title: "Time's UP !",
+                    title: "Time's UP!",
                     text: "Time's up! Game Over.",
                     icon: "error"
                 });
@@ -116,8 +148,59 @@ if(isset($_GET['new'])){
             }
         }
 
+        function displayStreakPopup() {
+            clearInterval(timer); // Pause the timer
+            streakCount = 0; // Reset streak after showing the popup
+            updateStreakProgressBar();
+            console.log("Displaying Streak Popup");
+
+            // Show congratulation confetti animation
+            displayConfetti();
+
+            Swal.fire({
+                title: "Congratulations!",
+                text: "You Got a Streak! Press the button to add 5 seconds to your timer.",
+                icon: "success",
+                showCancelButton: true,
+                confirmButtonText: "Get Streak",
+                cancelButtonText: "Later",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log("Adding 5 seconds to timer");
+                    timeLeft += 5;
+                    updateUI();
+                }
+                hideConfetti(); // Hide confetti animation after popup interaction
+                startTimer(); // Resume the timer after popup interaction
+            });
+        }
+
+        function displayConfetti() {
+            const confettiContainer = document.querySelector('.confetti');
+            confettiContainer.style.display = 'block';
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.style.left = `${Math.random() * 100}%`;
+                confettiPiece.style.animationDuration = `${Math.random() * 2 + 3}s`;
+                confettiPiece.style.animationDelay = `${Math.random() * 2}s`;
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+
+        function hideConfetti() {
+            const confettiContainer = document.querySelector('.confetti');
+            confettiContainer.innerHTML = '';
+            confettiContainer.style.display = 'none';
+        }
+
+        function updateStreakProgressBar() {
+            const progressBar = document.getElementById("streakProgressBar");
+            progressBar.style.width = `${(streakCount / 3) * 100}%`;
+            progressBar.textContent = `${streakCount} / 3 Streak`;
+        }
+
         function handleCorrectAnswer() {
-            levelUpSound.play(); //play tone when level is up
+            levelUpSound.play();
             Swal.fire({
                 title: "Level Passed",
                 text: "Congratulations! You have completed Level " + (currentLevel - 1) + ".",
@@ -136,18 +219,22 @@ if(isset($_GET['new'])){
                     solution = data.solution;
                     document.getElementById("imgApi").src = imgApi;
                     document.getElementById("note").innerHTML = 'Ready?';
-                    clearInterval(timer);
-                    timer = setInterval(() => {
-                        timeLeft--;
-                        document.getElementById("timer").textContent = timeLeft;
-                        if (timeLeft <= 0) {
-                            handleTimeOut();
-                        }
-                    }, 1000);
+                    startTimer(); // Start the timer
                 })
                 .catch(error => {
                     console.error('Error fetching image from the API:', error);
                 });
+        }
+
+        function startTimer() {
+            clearInterval(timer); // Ensure no duplicate timers
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    handleTimeOut();
+                }
+            }, 1000);
         }
 
         function resetGame() {
@@ -160,21 +247,19 @@ if(isset($_GET['new'])){
                     score: score
                 }),
             })
-
             .then(response => response.json())
-
             .then(data => {
                 console.log(data);
             })
-
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Error:", error');
             });
             
             timeLeft = 45;
             score = 0;
             numQuestions = 1;
             currentLevel = 1;
+            streakCount = 0;
             updateUI();
             fetchImage();
         }
@@ -184,6 +269,7 @@ if(isset($_GET['new'])){
             localStorage.setItem('score', score);
             localStorage.setItem('numQuestions', numQuestions);
             localStorage.setItem('currentLevel', currentLevel);
+            localStorage.setItem('streakCount', streakCount);
         });
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -198,40 +284,44 @@ if(isset($_GET['new'])){
         <nav class="navbar">
             <h1 class="logo">QUEZZY BUNCH</h1>
             <div class="links">
-                <a href="index.php"><i class="bi bi-house custom-icon"></i></i></a>
+                <a href="index.php"><i class="bi bi-house custom-icon"></i></a>
                 <a href="scores.php"><i class="bi bi-123 custom-icon"></i></a>
-                <a href="profile.php"><i class="bi bi-person-fill custom-icon"></i></i></a>
+                <a href="profile.php"><i class="bi bi-person-fill custom-icon"></i></a>
                 <a href="../Controller/logout.php"><i class="bi bi-power custom-icon"></i></a>
-                <button class="" id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
+                <button id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
             </div>
         </nav>
 
         <div class="container">
-            <div class="sTitle">LET'S PLAY ! </div>
+            <div class="sTitle">LET'S PLAY!</div>
 
             <div class="single-Data">
                 <span>Level <span id="level-no">1</span></span>
-                <span>Question<span id="question-number">1</span></span>
-                <span>Score<span id="score">0</span></span>
+                <span>Question <span id="question-number">1</span></span>
+                <span>Score <span id="score">0</span></span>
                 <span>Time <span id="timer">45</span></span>
+            </div>
+            <div class="progress my-3">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" id="streakProgressBar">Streak Progress</div>
             </div>
             <div class="imgApi">
                 <img src="" alt="Question Image" id="imgApi" class="color-image">
             </div>
 
             <div class="ans-align">
-                <p class="txtAns">Enter The Answer : </p>
+                <p class="txtAns">Enter The Answer:</p>
                 <input type="number" class="input-field" id="answer" name="input" placeholder="Enter Answer" min="0">
                 <button type="submit" class="btnGo" onclick="handleInput()">Go!</button>
             </div>
             <div id="note"></div>
 
+            <!-- Confetti Container for Animation -->
+            <div class="confetti"></div>
         </div>
     </div>
     <audio id="music">
         <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
     </audio>
-
 </body>
 
 </html>

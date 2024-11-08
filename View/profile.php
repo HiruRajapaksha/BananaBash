@@ -27,7 +27,7 @@ include '../Controller/updateHandler.php';
 <body>
     <div class="image-container">
         <nav class="navbar">
-            <h1 class="logo">QUEZZY BUNCH</h1>
+            <h1 class="logo">BANANA BASH</h1>
             <div class="links">
                 <?php if($_SESSION['loggedIn']){ ?>
                   <a href="profile.php">Hi, <?=$_SESSION['user_name'];?></a>

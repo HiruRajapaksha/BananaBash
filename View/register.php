@@ -16,52 +16,103 @@ include '../Controller/registerHandler.php';
     <script src="../Static Assets/js/bgAudio.js"></script>
 
     <title>QUEEZY BUNCH</title>
+    <style>
+        body,
+        html {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        @keyframes moveLeftToRight {
+            0% {
+                bottom: -10%;
+                left: 10%;
+                opacity: 0;
+            }
+
+            25% {
+                bottom: 10%;
+                left: 10%;
+                opacity: 1;
+            }
+
+            50% {
+                bottom: 10%;
+                left: 70%;
+                opacity: 1;
+            }
+
+            75% {
+                bottom: 10%;
+                left: 100%;
+                opacity: 0;
+            }
+
+            100% {
+                bottom: -10%;
+                left: -20%;
+                opacity: 0;
+            }
+        }
+
+        .moving-image {
+            position: absolute;
+            bottom: 10%;
+            width: 150px;
+            height: auto;
+            z-index: 10;
+            animation: moveLeftToRight 5s infinite ease-in-out;
+        }
+    </style>
+
 </head>
 
 <body>
 
     <div class="image-container">
         <nav class="navbar">
-            <h1 class="logo">QUEZZY BUNCH</h1>
+            <h1 class="logo">BANANA BASH</h1>
             <div class="links">
                 <button class="" id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
             </div>
         </nav>
 
-    <div class="container">    
-        <div class="regform-wrapper">
-            <h1 class="text-center">Create Your Profile</h1>
-            <form class="regform-align" action="register.php" method="post">
-                <div class="regform-group">
-                    <label for="fullName">Full Name :</i></label>
-                    <input type="text" class="input-field" id="fullName" name="fullName" placeholder="Enter Full Name" required>
-                </div>
-                <div class="regform-group">
-                    <label for="email">Email Address :</i></label>
-                    <input type="email" class="input-field" id="email" name="email" placeholder="Enter email" required>
-                </div>
-                <div class="regform-group">
-                    <label for="age">Age :</i></label>
-                    <input type="number" class="input-field" id="age" name="age" placeholder="Enter your age" min="0" required>
-                </div>
-                <div class="regform-group">
-                    <label for="password">Password :</i></label>
-                    <input type="password" class="input-field" id="password" name="password" placeholder="Enter password" required>
-                </div>
-                <div class="regform-group">
-                    <label for="confirmPassword">Confirm Password :</i></label>
-                    <input type="password" class="input-field" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
-                </div>
-                <div class="text-center">
-                    <button class="cancelbtn" type="reset" id="cancelbtn">Reset</button>
-                    <button class="regformBtn" type="submit" id="regbtn" name="register" >Register</button> <br><br>
-                    Already Have An Acconut ? <a href="login.php" id="loginlink">Click Here</a>
-                    
-                </div>   
-            </form>
+        <div class="container">
+            <div class="regform-wrapper">
+                <h1 class="text-center">Create Your Profile</h1>
+                <form class="regform-align" action="register.php" method="post">
+                    <div class="regform-group">
+                        <label for="fullName">Full Name :</i></label>
+                        <input type="text" class="input-field" id="fullName" name="fullName" placeholder="Enter Full Name" required>
+                    </div>
+                    <div class="regform-group">
+                        <label for="email">Email Address :</i></label>
+                        <input type="email" class="input-field" id="email" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="regform-group">
+                        <label for="age">Age :</i></label>
+                        <input type="number" class="input-field" id="age" name="age" placeholder="Enter your age" min="0" required>
+                    </div>
+                    <div class="regform-group">
+                        <label for="password">Password :</i></label>
+                        <input type="password" class="input-field" id="password" name="password" placeholder="Enter password" required>
+                    </div>
+                    <div class="regform-group">
+                        <label for="confirmPassword">Confirm Password :</i></label>
+                        <input type="password" class="input-field" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    <div class="text-center">
+                        <button class="cancelbtn" type="reset" id="cancelbtn">Reset</button>
+                        <button class="regformBtn" type="submit" id="regbtn" name="register">Register</button> <br><br>
+                        Already Have An Acconut ? <a href="login.php" id="loginlink">Click Here</a>
+
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>   
     </div>
+    <img src="../Static Assets/assets/images/regBanana.png" alt="Moving Image" class="moving-image">
+
     <audio id="music">
         <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
     </audio>

@@ -24,7 +24,7 @@ if(!$_SESSION['loggedIn']){
 <body>
     <div class="image-container">
         <nav class="navbar">
-            <h1 class="logo">QUEZZY BUNCH</h1>
+            <h1 class="logo">BANANA BASH</h1>
             <div class="links">
                 <a href="bestScored.php">BEST SCORED !</a>
                 <a href="index.php"><i class="bi bi-house custom-icon"></i></i></a>

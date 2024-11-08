@@ -1,14 +1,25 @@
 body {
-    background: linear-gradient(180deg, #180328 9.44%, #332142 100%);
+    background: linear-gradient(180deg, #094119 9.44%, #39A93A 100%);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-.image-container {
-    background-image: url("../assets/images/giphy.gif");
+/* .image-container {
+    background-image: url("../assets/images/indexBG.png");
     background-size: 100% 100%;
     object-fit: contain;
+} */
+.image-container {
+  background-image: url("../assets/images/indexBG.png");
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: repeat; /* Prevents tiling */
+  width: 100vw; /* Full screen width */
+  height: 100vh; /* Full screen height */
+  opacity: 0.8; /* Reduces the opacity */
+  position: absolute; /* Stays fixed as a background */
+  z-index: -1; /* Keeps it behind other content */
 }
 
 .indexTitle {
@@ -29,24 +40,6 @@ body {
   100% {color: white;}
 }
 
-.startBtn {
-    background-color: #D9D9D9;
-    color: #9747FF;
-    font-weight: 500;
-    font-size: 30px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 37px;
-    cursor: pointer;
-    transition: all 600ms ease;
-}
-
-.startBtn:hover {
-    background-color: #9747FF;
-    color: #D9D9D9;
-    transform: scale(1.2);
-    box-shadow: 0 0 40px rgba(166, 0, 255, 0.8);
-}
 
 #quiz-image {
     width: 422px;
@@ -59,6 +52,25 @@ body {
 @keyframes quiz-image {
   50% {transform: scale(1.1);
   }
+}
+
+.startBtn {
+  background-color: #38A739;
+  color: #8ED06C;
+  font-weight: 500;
+  font-size: 30px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 37px;
+  cursor: pointer;
+  transition: all 600ms ease;
+}
+
+.startBtn:hover {
+  background-color: #57982A;
+  color: #D9D9D9;
+  transform: scale(1.2);
+  box-shadow: 0 0 40px rgba(87, 152, 42, 0.8);
 }
 
 .container {
@@ -154,7 +166,7 @@ body {
     height: 5vh;
     padding: 10px 15px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 50px;
     outline: none;
     background: none;
     outline: none;
@@ -180,10 +192,10 @@ body {
 }
 
 .loginbtn:hover {
-    background-color: #9747FF;
+    background-color: #4EBA16;
     color: #D9D9D9;
     transform: scale(1.2);
-    box-shadow: 0 0 40px rgba(166, 0, 255, 0.8);
+    box-shadow: 0 0 40px rgba(34, 140, 34, 0.8);
 
 
 }
@@ -229,8 +241,8 @@ body {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70vh;
+    width: 58%;
+    height: 80vh;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.068);
     border-radius: 42px;
@@ -271,10 +283,11 @@ body {
 }
 
 .regformBtn:hover {
-    background-color: #9747FF;
     color: #D9D9D9;
     transform: scale(1.2);
-    box-shadow: 0 0 40px rgba(166, 0, 255, 0.8);
+    background-color: #4EBA16;
+    box-shadow: 0 0 40px rgba(34, 140, 34, 0.8);
+
 }
 
 .cancelbtn {
