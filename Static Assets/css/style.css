@@ -241,8 +241,8 @@ body {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70vh;
+    width: 58%;
+    height: 80vh;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.068);
     border-radius: 42px;
@@ -283,10 +283,11 @@ body {
 }
 
 .regformBtn:hover {
-    background-color: #9747FF;
     color: #D9D9D9;
     transform: scale(1.2);
-    box-shadow: 0 0 40px rgba(166, 0, 255, 0.8);
+    background-color: #4EBA16;
+    box-shadow: 0 0 40px rgba(34, 140, 34, 0.8);
+
 }
 
 .cancelbtn {
