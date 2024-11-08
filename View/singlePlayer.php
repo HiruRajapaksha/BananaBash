@@ -212,7 +212,7 @@ if (isset($_GET['new'])) {
         }
 
         function fetchImage() {
-            fetch('https://marcconrad.com/uob/tomato/api.php')
+            fetch('https://marcconrad.com/uob/banana/api.php')
                 .then(response => response.json())
                 .then(data => {
                     imgApi = data.question;
