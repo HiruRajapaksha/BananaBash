@@ -234,11 +234,26 @@ facilisis felis vitae fermentum posuere. Curabitur tincidunt dolor eget turpis e
             }
         }
 
-        // Set default event listeners for all buttons
         document.querySelectorAll(".icon-btn").forEach((button, index) => {
             button.addEventListener("click", () => changeText(index + 1));
         });
+
+        // document.addEventListener("DOMContentLoaded", () => {
+        //     document.querySelectorAll("a").forEach(link => {
+        //         link.addEventListener("click", function(event) {
+        //             event.preventDefault();
+
+        //             document.body.classList.add("fade-out");
+
+        //             const targetUrl = this.href;
+        //             setTimeout(() => {
+        //                 window.location.href = targetUrl;
+        //             }, 500); 
+        //         });
+        //     });
+        // });
     </script>
+    <script src="../Static Assets/js/pageTransition.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typewriter-effect/dist/core.js"></script>
 
 

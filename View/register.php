@@ -117,5 +117,5 @@ include '../Controller/registerHandler.php';
         <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
     </audio>
 </body>
-
+<script src="../Static Assets/js/pageTransition.js"></script>
 </html>

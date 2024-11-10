@@ -131,5 +131,5 @@ if (!$_SESSION['loggedIn']) {
         <source type="audio/mp3" src="../Static Assets/../Static Assets/assets/audio/bg_music.mp3">
     </audio>
 </body>
-
+<script src="../Static Assets/js/pageTransition.js"></script>
 </html>
