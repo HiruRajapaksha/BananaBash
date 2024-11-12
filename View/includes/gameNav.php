@@ -3,7 +3,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        background-color: #1c1c1c; 
+        background-color: #1c1c1c;
     }
 
     .navbar {
@@ -30,10 +30,10 @@
 
     .main-links {
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
         align-items: flex-start;
         position: absolute;
-        top: 100%; 
+        top: 100%;
         right: 0;
         background-color: #2c2c2c;
         padding: 1rem;
@@ -87,9 +87,9 @@
     }
 
     .custom-icon {
-        font-size: 3rem;
+        font-size: 2rem;
+        margin-right: 0.5rem;
     }
-    
 </style>
 
 <nav class="navbar">
@@ -100,11 +100,9 @@
             <a href="scores.php">Scores</a>
             <a href="profile.php">Profile</a>
             <a href="../Controller/logout.php">Logout</a>
-            <button id="mutebtn">MUTE </button>
-            </div>
-        <button id="settingsBtn" class="settings-btn">
-            <i class="bi bi-gear custom-icon"></i>
-        </button>
+            <button id="mutebtn"><i class="bi bi-volume-mute"></i></button>
+        </div>
+        <button id="settingsBtn" class="settings-btn"><i class="bi bi-gear custom-icon"></i></button>
     </div>
 </nav>
 
@@ -116,13 +114,17 @@
     });
 
     document.getElementById('mutebtn').addEventListener('click', () => {
-    const muteButton = document.getElementById('mutebtn');
-
-    if (muteButton.textContent === "MUTE") {
-        muteButton.textContent = "UNMUTE";
-    } else {
-        muteButton.textContent = "MUTE";
-    }
-});
-
+        const muteButton = document.getElementById('mutebtn');
+        const icon = muteButton.querySelector('i');
+        
+        if (muteButton.textContent.trim() === "MUTE") {
+            muteButton.textContent = "UNMUTE";
+            icon.classList.remove('bi-volume-mute');
+            icon.classList.add('bi-volume-up');
+        } else {
+            muteButton.textContent = "MUTE";
+            icon.classList.remove('bi-volume-up');
+            icon.classList.add('bi-volume-mute');
+        }
+    });
 </script>
