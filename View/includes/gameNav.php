@@ -20,6 +20,11 @@
         text-shadow: 0 0 10px #8ED06C, 0 0 20px #38A739;
     }
 
+    .logo img {
+        width: 80%;
+        scale: 0.7;
+    }
+
     .links {
         position: relative;
         display: flex;
@@ -92,7 +97,7 @@
 </style>
 
 <nav class="navbar">
-    <h1 class="logo">BANANA BASH</h1>
+    <h1 class="logo"><img src="../Static Assets/assets/images/Logo.png" alt="Banana Bash"></h1>
     <div class="links">
         <div id="mainLinks" class="main-links hidden">
             <a href="index.php">Home</a>
