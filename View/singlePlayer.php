@@ -35,14 +35,23 @@ if (isset($_GET['new'])) {
     <style>
         /* Custom styles for the progress bar */
         .progress-bar {
-            background-color: purple !important;
+            background-color: #39A93A !important;
             color: white !important;
         }
+
         /* Animation for congratulations */
         @keyframes confettiAnimation {
-            0% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-100px); }
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
         }
+
         .confetti {
             position: fixed;
             width: 100%;
@@ -51,8 +60,10 @@ if (isset($_GET['new'])) {
             overflow: hidden;
             top: 0;
             left: 0;
-            display: none; /* Hidden initially */
+            display: none;
+            /* Hidden initially */
         }
+
         .confetti div {
             position: absolute;
             width: 10px;
@@ -215,14 +226,30 @@ if (isset($_GET['new'])) {
             fetch('https://marcconrad.com/uob/banana/api.php')
                 .then(response => response.json())
                 .then(data => {
+                    // Update the image and solution
                     imgApi = data.question;
                     solution = data.solution;
-                    document.getElementById("imgApi").src = imgApi;
-                    document.getElementById("note").innerHTML = 'Ready?';
-                    startTimer(); // Start the timer
+
+                    const imgElement = document.getElementById("imgApi");
+                    if (imgElement) {
+                        imgElement.src = imgApi;
+                    } else {
+                        console.error("Error: Image element not found in the DOM");
+                        return;
+                    }
+
+                    // Start the timer after successfully fetching the image
+                    startTimer();
                 })
                 .catch(error => {
                     console.error('Error fetching image from the API:', error);
+
+                    // Handle fetch errors gracefully
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Failed to load the question. Please try again later.",
+                        icon: "error",
+                    });
                 });
         }
 
@@ -239,22 +266,22 @@ if (isset($_GET['new'])) {
 
         function resetGame() {
             fetch('../Controller/updateScore.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    score: score
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.error('Error:", error');
-            });
-            
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        score: score
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:", error');
+                });
+
             timeLeft = 45;
             score = 0;
             numQuestions = 1;
@@ -264,7 +291,7 @@ if (isset($_GET['new'])) {
             fetchImage();
         }
 
-        window.addEventListener('beforeunload', function () {
+        window.addEventListener('beforeunload', function() {
             localStorage.setItem('timeLeft', timeLeft);
             localStorage.setItem('score', score);
             localStorage.setItem('numQuestions', numQuestions);
@@ -272,52 +299,141 @@ if (isset($_GET['new'])) {
             localStorage.setItem('streakCount', streakCount);
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             updateUI();
             fetchImage();
         });
     </script>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .single-Data {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 1.2em;
+            justify-content: center;
+        }
+
+        .single-Data span {
+            background-color: #f4dda5;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #423616;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            padding: 30px;
+            border-radius: 42px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: #ffd90050;
+        }
+
+        .imgApi {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imgApi img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .ans-align {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-field {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .txtAns {
+            font-size: 30px;
+            color: #584e15;
+            font-weight: bold;
+            font-family: Cursive;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .ans-align {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="image-container">
-        <nav class="navbar">
-            <h1 class="logo">QUEZZY BUNCH</h1>
-            <div class="links">
-                <a href="index.php"><i class="bi bi-house custom-icon"></i></a>
-                <a href="scores.php"><i class="bi bi-123 custom-icon"></i></a>
-                <a href="profile.php"><i class="bi bi-person-fill custom-icon"></i></a>
-                <a href="../Controller/logout.php"><i class="bi bi-power custom-icon"></i></a>
-                <button id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
-            </div>
-        </nav>
+        <?php include 'includes/gameNav.php'; ?>
 
-        <div class="container">
-            <div class="sTitle">LET'S PLAY!</div>
+        <div class="container d-flex align-items-center justify-content-between mt-5">
+            <!-- <div class="sTitle">LET'S PLAY!</div> -->
 
-            <div class="single-Data">
-                <span>Level <span id="level-no">1</span></span>
-                <span>Question <span id="question-number">1</span></span>
-                <span>Score <span id="score">0</span></span>
-                <span>Time <span id="timer">45</span></span>
-            </div>
-            <div class="progress my-3">
-                <div class="progress-bar" role="progressbar" style="width: 0%;" id="streakProgressBar">Streak Progress</div>
+            <div class="form-container mx-4 row">
+                <div class="single-Data">
+                    <span>Level <span id="level-no" class="fw-bold">1</span></span>
+                    <span>Question <span id="question-number" class="fw-bold">1</span></span>
+                    <span>Score <span id="score" class="fw-bold">0</span></span>
+                    <span>Time <span id="timer" class="fw-bold">45</span></span>
+                </div>
+                <div class="progress my-3">
+                    <div class="progress-bar" role="progressbar" style="width: 100%;" id="streakProgressBar">Streak Progress</div>
+                </div>
+                <div class="ans-align">
+                    <p class="txtAns">Enter The Answer:</p>
+                    <input type="number" class="input-field" id="answer" name="input" placeholder="Enter Answer" min="0">
+                    <button type="submit" class="btnGo" onclick="handleInput()">Go!</button>
+                </div>
             </div>
             <div class="imgApi">
                 <img src="" alt="Question Image" id="imgApi" class="color-image">
             </div>
-
-            <div class="ans-align">
-                <p class="txtAns">Enter The Answer:</p>
-                <input type="number" class="input-field" id="answer" name="input" placeholder="Enter Answer" min="0">
-                <button type="submit" class="btnGo" onclick="handleInput()">Go!</button>
-            </div>
-            <div id="note"></div>
-
+            <!-- <div id="note"></div> -->
             <!-- Confetti Container for Animation -->
             <div class="confetti"></div>
         </div>
+
     </div>
     <audio id="music">
         <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
