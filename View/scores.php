@@ -61,15 +61,6 @@ if (!$_SESSION['loggedIn']) {
                 <button id="settingsBtn" class="settings-btn"><i class="bi bi-gear custom-icon"></i></button>
             </div>
         </nav>
-        <!-- <nav class="navbar">
-            <h1 class="logo">BANANA BASH</h1>
-            <div class="links">
-                <a href="bestScored.php">BEST SCORED !</a>
-                <a href="index.php"><i class="bi bi-house custom-icon"></i></i></a>
-                <a href="../Controller/logout.php"><i class="bi bi-power custom-icon"></i></a>
-                <button class="" id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
-            </div>
-        </nav> -->
         <div class="container">
             <div class="content">
                 <div class="profileform-wrapper">
