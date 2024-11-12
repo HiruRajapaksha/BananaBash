@@ -343,6 +343,7 @@ if (isset($_GET['new'])) {
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.18);
             background: #ffd90050;
+            scale: 0.7;
         }
 
         .imgApi {
@@ -357,6 +358,7 @@ if (isset($_GET['new'])) {
             height: auto;
             border: 2px solid #ccc;
             border-radius: 8px;
+            scale: 1.2;
         }
 
         .ans-align {
