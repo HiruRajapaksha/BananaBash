@@ -14,7 +14,7 @@ if (!$_SESSION['loggedIn']) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../Static Assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../Static Assets/css/howtoPlay.css" type="text/css">
     <script src="../Static Assets/js/bgAudio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
     <title>QUEEZY BUNCH</title>
@@ -64,9 +64,9 @@ if (!$_SESSION['loggedIn']) {
 
         .icon-btn {
             font-size: 24px;
-            color: white;
+            color: #695033;
             margin: 10px;
-            background: #38A739;
+            background: #F2D000;
             border: none;
             border-radius: 50%;
             padding: 10px 15px;
@@ -75,24 +75,29 @@ if (!$_SESSION['loggedIn']) {
         }
 
         .icon-btn:hover {
+            background-color: #F2D000;
+            color: #695033;
             transform: scale(1.2);
-            box-shadow: 0 0 10px rgba(56, 167, 57, 0.8);
+            box-shadow: 0 0 10px rgba(242, 208, 0, 0.8);
         }
 
         .play-btn {
             margin-top: 20px;
-            background-color: #38A739;
-            color: white;
+            background-color: #F2D000;
+            color: #594708;
             font-size: 20px;
             border: none;
             border-radius: 10px;
             padding: 10px 20px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+            transition: background-color 300ms ease-in-out, 
+                color 300ms ease-in-out, 
+                transform 300ms ease-in-out, 
+                box-shadow 300ms ease-in-out;        }
 
         .play-btn:hover {
-            background-color: #57982A;
+            background-color: #4EBA16;
+            color: white;
         }
 
         #text-content {
@@ -122,48 +127,39 @@ if (!$_SESSION['loggedIn']) {
         .col-expanded {
             transform: scale(1.05);
         }
+        
     </style>
 
 </head>
 
 <body>
     <div class="image-container">
-        <nav class="navbar">
-            <h1 class="logo">BANANA BASH</h1>
-            <div class="links">
-                <?php if ($_SESSION['loggedIn']) { ?>
-                    <a href="profile.php">Hi, <?= $_SESSION['user_name']; ?></a>
-                <?php } ?>
-                <a href="scores.php"><i class="bi bi-123 custom-icon"></i></a>
-                <a href="index.php"><i class="bi bi-house custom-icon"></i></a>
-                <a href="../Controller/logout.php"><i class="bi bi-power custom-icon"></i></a>
-                <button class="" id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
-            </div>
-        </nav>
-
+        <?php include 'includes/gameNav.php'; ?>
         <div class="container">
             <div class="row align-items-center">
-                <!-- Lottie Animation Section -->
                 <div class="col-4" id="col-4">
                     <div id="lottie-animation"></div>
                 </div>
 
-                <!-- Text and Buttons Section -->
                 <div class="col-8" id="col-8">
                     <div id="text-container">
-                        <h2 class="animate-title" id="text-title">Welcome!</h2>
-                        <p class="animate-content" id="text-content">
-                            Click a button to view the corresponding text.
-                        </p>
+                        <div class="content-background">
+                            <h2 class="animate-title" id="text-title">Welcome!</h2>
+                            <p class="animate-content" id="text-content">
+                                Click a button to view the corresponding text.
+                            </p>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-start mt-4">
-                        <button class="icon-btn" onclick="changeText(1)"><i class="bi bi-1-circle"></i></button>
-                        <button class="icon-btn" onclick="changeText(2)"><i class="bi bi-2-circle"></i></button>
-                        <button class="icon-btn" onclick="changeText(3)"><i class="bi bi-3-circle"></i></button>
-                        <button class="icon-btn" onclick="changeText(4)"><i class="bi bi-4-circle"></i></button>
-                        <button class="icon-btn" onclick="changeText(5)"><i class="bi bi-5-circle"></i></button>
+                    <div class="d-flex justify-content-start mt-4" id="buttons-container">
+                        <button class="icon-btn" onclick="changeText(1)" id="button-1"><i class="bi bi-1-circle"></i></button>
+                        <button class="icon-btn" onclick="changeText(2)" id="button-2"><i class="bi bi-2-circle"></i></button>
+                        <button class="icon-btn" onclick="changeText(3)" id="button-3"><i class="bi bi-3-circle"></i></button>
+                        <button class="icon-btn" onclick="changeText(4)" id="button-4"><i class="bi bi-4-circle"></i></button>
+                        <button class="icon-btn" onclick="changeText(5)" id="button-5"><i class="bi bi-5-circle"></i></button>
                     </div>
-                    <a href="singlePlayer.php?new=true"><button class="play-btn mt-4" id="startbtn">Start Playing</button></a>
+                    <a href="singlePlayer.php?new=true" id="startbtn-container" style="display: none;">
+                        <button class="play-btn mt-4" id="startbtn">Start Playing</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -173,7 +169,6 @@ if (!$_SESSION['loggedIn']) {
         <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
     </audio>
 
-    <!-- Lottie Animation Script -->
     <script>
         const animationContainer = document.getElementById('lottie-animation');
         const animation = lottie.loadAnimation({
@@ -190,12 +185,15 @@ if (!$_SESSION['loggedIn']) {
         const textContainer = document.getElementById("text-container");
         const col4 = document.getElementById("col-4");
         const col8 = document.getElementById("col-8");
+        const startBtnContainer = document.getElementById("startbtn-container");
+
+        const buttonsClicked = [false, false, false, false, false];
 
         function changeText(buttonId) {
             const texts = [{
                     title: "Step 1: Introduction",
                     content: `This is the first step in your journey!
-                
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent 
 facilisis felis vitae fermentum posuere. Curabitur tincidunt dolor eget turpis euismod, id aliquet justo gravida. Proin ac consequat arcu.`
                 },
@@ -217,12 +215,20 @@ facilisis felis vitae fermentum posuere. Curabitur tincidunt dolor eget turpis e
                 }
             ];
 
-            // Update the text content and title
             const selectedText = texts[buttonId - 1];
             textTitle.textContent = selectedText.title;
             textContent.textContent = selectedText.content;
 
-            // Adjust styles for long text
+            const buttonElement = document.getElementById(`button-${buttonId}`);
+            if (!buttonsClicked[buttonId - 1]) {
+                buttonsClicked[buttonId - 1] = true;
+                buttonElement.classList.add("clicked");
+            }
+
+            if (buttonsClicked.every(clicked => clicked)) {
+                startBtnContainer.style.display = "block";
+            }
+
             if (selectedText.content.length > 150) {
                 textContainer.classList.add("text-container-expanded");
                 col4.classList.add("col-expanded");
@@ -233,25 +239,6 @@ facilisis felis vitae fermentum posuere. Curabitur tincidunt dolor eget turpis e
                 col8.classList.remove("col-expanded");
             }
         }
-
-        document.querySelectorAll(".icon-btn").forEach((button, index) => {
-            button.addEventListener("click", () => changeText(index + 1));
-        });
-
-        // document.addEventListener("DOMContentLoaded", () => {
-        //     document.querySelectorAll("a").forEach(link => {
-        //         link.addEventListener("click", function(event) {
-        //             event.preventDefault();
-
-        //             document.body.classList.add("fade-out");
-
-        //             const targetUrl = this.href;
-        //             setTimeout(() => {
-        //                 window.location.href = targetUrl;
-        //             }, 500); 
-        //         });
-        //     });
-        // });
     </script>
     <script src="../Static Assets/js/pageTransition.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typewriter-effect/dist/core.js"></script>
