@@ -1,0 +1,115 @@
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  body {
+    animation: fadeIn 0.5s ease-in-out;
+    background: linear-gradient(180deg, #094119 9.44%, #39A93A 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+  }
+  
+  .fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+  }
+  
+  .image-container {
+    background-image: url("../assets/images/bestScoreBG.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.8;
+    position: absolute;
+    z-index: -1;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  
+  .container {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }  
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .profileform-wrapper {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50vh;
+    padding: 30px;
+    background-image: url('../assets/images/bestScoreBoard.png');  
+    background-size: cover; 
+    background-position: center;  
+    background-repeat: no-repeat;  
+    border-radius: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  
+  .profileform-wrapper h1 {
+    text-align: center;
+  }
+  
+  .profileform-wrapper h4 {
+    margin: 10px 0;
+  }
+  
+  @keyframes slideUpFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(100%); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
+
+.ending-image {
+    width: 80%;  
+    height: auto;  
+    animation: slideUpFadeIn 1s ease-in-out;  
+    margin-top: 20px;  
+}

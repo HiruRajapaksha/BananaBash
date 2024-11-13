@@ -23,7 +23,7 @@ $gameID = $result["id"];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../Static Assets/css/navbar.css">
-    <link rel="stylesheet" href="../Static Assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../Static Assets/css/bestScored.css" type="text/css">
     <script src="../Static Assets/js/bgAudio.js"></script>
 
     <title>QUEEZY BUNCH</title>
@@ -41,6 +41,7 @@ $gameID = $result["id"];
                     <h4>Game ID : <?= $gameID; ?></h4>
                     <h4>Score : <?= $score; ?></h4>
                     <h4>Date : <?= $datentime; ?></h4>
+                    <img src="../Static Assets/assets/images/bestScoreTWOMonkey.png" alt="Ending Image" class="ending-image">
                 </div>
             </div>
         </div>
