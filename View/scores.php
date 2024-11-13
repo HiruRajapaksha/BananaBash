@@ -74,19 +74,8 @@ if (!$_SESSION['loggedIn']) {
 
 <body>
     <div class="image-container">
-        <nav class="navbar">
-            <h1 class="logo"><img src="../Static Assets/assets/images/Logo.png" alt="Banana Bash"></h1>
-            <div class="links">
-                <div id="mainLinks" class="main-links hidden">
-                    <a href="index.php">Home</a>
-                    <a href="bestScored.php">BEST SCORED !</a>
-                    <a href="profile.php">Profile</a>
-                    <a href="../Controller/logout.php">Leave Game</a>
-                    <button id="mutebtn"><i class="bi bi-volume-mute"></i></button>
-                </div>
-                <button id="settingsBtn" class="settings-btn"><i class="bi bi-gear custom-icon"></i></button>
-            </div>
-        </nav>
+    <?php include 'includes/gameNav.php'; ?>
+
         <div class="container">
             <div class="content">
                 <div class="profileform-wrapper">
@@ -128,34 +117,4 @@ if (!$_SESSION['loggedIn']) {
         <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
     </audio>
 </body>
-<script>
-    document.getElementById('settingsBtn').addEventListener('click', () => {
-        const mainLinks = document.querySelector('.main-links');
-        mainLinks.classList.toggle('hidden');
-        mainLinks.classList.toggle('visible');
-    });
-
-    document.getElementById('mutebtn').addEventListener('click', () => {
-        const muteButton = document.getElementById('mutebtn');
-        const icon = muteButton.querySelector('i');
-
-        if (muteButton.textContent.trim() === "MUTE") {
-            muteButton.textContent = "UNMUTE";
-            icon.classList.remove('bi-volume-mute');
-            icon.classList.add('bi-volume-up');
-        } else {
-            muteButton.textContent = "MUTE";
-            icon.classList.remove('bi-volume-up');
-            icon.classList.add('bi-volume-mute');
-        }
-    });
-
-    window.addEventListener('load', () => {
-        const muteButton = document.getElementById('mutebtn');
-        const icon = muteButton.querySelector('i');
-
-        icon.classList.add('bi-volume-up');
-    });
-</script>
-
 </html>

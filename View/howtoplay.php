@@ -144,9 +144,10 @@ if (!$_SESSION['loggedIn']) {
                 <div class="col-8" id="col-8">
                     <div id="text-container">
                         <div class="content-background">
-                            <h2 class="animate-title" id="text-title">Welcome!</h2>
+                            <h2 class="animate-title" id="text-title">Welcome to the BananaBash!
+                            </h2>
                             <p class="animate-content" id="text-content">
-                                Click a button to view the corresponding text.
+                            Click through the steps below to learn how to play, choose your difficulty, and start the game.
                             </p>
                         </div>
                     </div>
@@ -190,29 +191,39 @@ if (!$_SESSION['loggedIn']) {
         const buttonsClicked = [false, false, false, false, false];
 
         function changeText(buttonId) {
-            const texts = [{
-                    title: "Step 1: Introduction",
-                    content: `This is the first step in your journey!
+            const texts = [
+        {
+            title: "Step 1: Start Your Journey",
+            content: `Start your journey to become the ultimate BananaBash Champion! In this game, your goal is to win as many games as possible within a limited time. Each victory boosts your score and gets you closer to the top!`
+        },
+        {
+            title: "Step 2: Choose Your Difficulty Level",
+            content: `Pick the difficulty that suits your skill level:
+            
+- Easy: Start with 100 seconds and earn an extra 20 seconds for every 3-win streak.
+- Medium: Start with 60 seconds and earn a 10-second bonus for every 3-win streak.
+- Hard: Start with 40 seconds and earn 5 extra seconds for every 3-win streak.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent 
-facilisis felis vitae fermentum posuere. Curabitur tincidunt dolor eget turpis euismod, id aliquet justo gravida. Proin ac consequat arcu.`
-                },
-                {
-                    title: "Step 2: Get Ready",
-                    content: "Prepare yourself for the next challenge!"
-                },
-                {
-                    title: "Step 3: Begin",
-                    content: "Start your adventure with confidence!"
-                },
-                {
-                    title: "Step 4: Keep Going",
-                    content: "Stay focused and keep progressing!"
-                },
-                {
-                    title: "Step 5: Finish Line",
-                    content: "Congratulations on completing the steps!"
-                }
+Each level offers a unique challenge, so choose wisely!`
+        },
+        {
+            title: "Step 3: Aim to Win and Set High Scores!",
+            content: `Your main goal is to win as many games as possible before time runs out. Every consecutive win streak adds bonus time to help you keep playing and achieving higher scores. Go for the streak and aim for greatness!`
+        },
+        {
+            title: "Step 4: Earn Streak Rewards",
+            content: `Winning three games in a row unlocks bonus time based on your difficulty level:
+
+- Easy: +20 seconds
+- Medium: +10 seconds
+- Hard: +5 seconds
+
+This extra time can make the difference between an average score and a high score, so keep up the momentum!`
+        },
+        {
+            title: "Step 5: Ready to Start?",
+            content: `Press "Start Game" to begin, and remember: the more games you win, the higher your score! You can always return to the main menu to adjust your difficulty level and try for a new high score. Good luck!`
+        }
             ];
 
             const selectedText = texts[buttonId - 1];

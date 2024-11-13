@@ -4,14 +4,13 @@ if (!$_SESSION['loggedIn']) {
     redirect("login.php");
 }
 
-$timeLeft = isset($_GET['timeLeft']) ? (int)$_GET['timeLeft'] : 45; // Default to 45 seconds
+$timeLeft = isset($_GET['timeLeft']) ? (int)$_GET['timeLeft'] : 45;
 $difficulty = isset($_GET['difficulty']) ? htmlspecialchars($_GET['difficulty']) : 'Easy';
 
 if (isset($_GET['new'])) {
     echo '<script>localStorage.removeItem("timeLeft");</script>';
     echo '<script>localStorage.removeItem("score");</script>';
     echo '<script>localStorage.removeItem("numQuestions");</script>';
-    echo '<script>localStorage.removeItem("currentLevel");</script>';
     echo '<script>localStorage.removeItem("streakCount");</script>';
 
     echo '<script>const currentURL = new URL(window.location.href);</script>';
@@ -33,53 +32,25 @@ if (isset($_GET['new'])) {
     <link rel="stylesheet" href="../Static Assets/css/player.css" type="text/css">
     <script src="../Static Assets/js/bgAudio.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <title>QUEEZY BUNCH</title>
     <style>
-        /* Custom styles for the progress bar */
-        .progress-bar {
-            background-color: #39A93A !important;
-            color: white !important;
-        }
-
-        /* Animation for congratulations */
-        @keyframes confettiAnimation {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-100px);
-            }
-        }
-
-        .confetti {
-            position: fixed;
+        .image-container {
+            background-image: url("../Static Assets/assets/images/modeHard.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            display: none;
-            /* Hidden initially */
-        }
-
-        .confetti div {
+            height: 100vh;
+            opacity: 0.8;
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: purple;
-            animation: confettiAnimation linear infinite;
+            z-index: 1;
         }
     </style>
+    <title>QUEEZY BUNCH</title>
+
     <script>
         let timeLeft = <?= $timeLeft; ?>;
         let score = parseInt(localStorage.getItem('score')) || 0;
         let numQuestions = parseInt(localStorage.getItem('numQuestions')) || 1;
-        let currentLevel = parseInt(localStorage.getItem('currentLevel')) || 1;
         let streakCount = parseInt(localStorage.getItem('streakCount')) || 0;
         let timer;
         let imgApi;
@@ -93,7 +64,6 @@ if (isset($_GET['new'])) {
             document.getElementById("question-number").textContent = numQuestions;
             document.getElementById("score").textContent = score;
             document.getElementById("timer").textContent = timeLeft;
-            document.getElementById("level-no").textContent = currentLevel;
             updateStreakProgressBar();
         }
 
@@ -162,6 +132,50 @@ if (isset($_GET['new'])) {
             }
         }
 
+        function resetGameAndSaveData() {
+            fetch('../Controller/updateScore.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        score: score, 
+                        playerID: '<?= $_SESSION['user_email']; ?>', 
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        console.log("Game data saved:", data.message);
+                    } else {
+                        console.error("Error saving game data:", data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error saving game data:", error);
+                });
+
+            // Reset local storage and game variables
+            localStorage.removeItem('timeLeft');
+            localStorage.removeItem('score');
+            localStorage.removeItem('numQuestions');
+            localStorage.removeItem('streakCount');
+            timeLeft = 45;
+            score = 0;
+            numQuestions = 1;
+            streakCount = 0;
+        }
+
+        window.addEventListener('beforeunload', function(event) {
+            resetGameAndSaveData();
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            updateUI();
+            fetchImage();
+        });
+
+
         function displayStreakPopup() {
             clearInterval(timer); // Pause the timer
             streakCount = 0; // Reset streak after showing the popup
@@ -214,13 +228,7 @@ if (isset($_GET['new'])) {
         }
 
         function handleCorrectAnswer() {
-            levelUpSound.play();
-            Swal.fire({
-                title: "Level Passed",
-                text: "Congratulations! You have completed Level " + (currentLevel - 1) + ".",
-                icon: "success"
-            });
-            currentLevel++;
+
             numQuestions = 1;
             fetchImage();
         }
@@ -288,7 +296,6 @@ if (isset($_GET['new'])) {
             timeLeft = 45;
             score = 0;
             numQuestions = 1;
-            currentLevel = 1;
             streakCount = 0;
             updateUI();
             fetchImage();
@@ -298,7 +305,6 @@ if (isset($_GET['new'])) {
             localStorage.setItem('timeLeft', timeLeft);
             localStorage.setItem('score', score);
             localStorage.setItem('numQuestions', numQuestions);
-            localStorage.setItem('currentLevel', currentLevel);
             localStorage.setItem('streakCount', streakCount);
         });
 
@@ -307,105 +313,7 @@ if (isset($_GET['new'])) {
             fetchImage();
         });
     </script>
-    <style>
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-        }
 
-        .single-Data {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            font-size: 1.2em;
-            justify-content: center;
-        }
-
-        .single-Data span {
-            background-color: #f4dda5;
-            padding: 10px 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            color: #423616;
-        }
-
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 60px;
-            padding: 30px;
-            border-radius: 42px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            height: 100%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            background: #ffd90050;
-            scale: 0.7;
-        }
-
-        .imgApi {
-            flex: 2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .imgApi img {
-            max-width: 100%;
-            height: auto;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            scale: 1.2;
-        }
-
-        .ans-align {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .input-field {
-            width: 100%;
-            max-width: 300px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .txtAns {
-            font-size: 30px;
-            color: #584e15;
-            font-weight: bold;
-            font-family: Cursive;
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .ans-align {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -413,29 +321,24 @@ if (isset($_GET['new'])) {
         <?php include 'includes/gameNav.php'; ?>
 
         <div class="container d-flex align-items-center justify-content-between mt-5">
-            <!-- <div class="sTitle">LET'S PLAY!</div> -->
-
             <div class="form-container mx-4 row">
                 <div class="single-Data">
-                    <span>Level <span id="level-no" class="fw-bold">1</span></span>
-                    <span>Question <span id="question-number" class="fw-bold">1</span></span>
-                    <span>Score <span id="score" class="fw-bold">0</span></span>
-                    <span>Time <span id="timer" class="fw-bold">45</span></span>
+                    <span style="background-color: #B61717;color: white;">Question <span id="question-number" class="fw-bold">1</span></span>
+                    <span style="background-color: #B61717;color: white;">Score <span id="score" class="fw-bold">0</span></span>
+                    <span style="background-color: #B61717;color: white;">Time <span id="timer" class="fw-bold">45</span></span>
                 </div>
                 <div class="progress my-3">
                     <div class="progress-bar" role="progressbar" style="width: 100%;" id="streakProgressBar">Streak Progress</div>
                 </div>
                 <div class="ans-align">
-                    <p class="txtAns">Enter The Answer:</p>
-                    <input type="number" class="input-field" id="answer" name="input" placeholder="Enter Answer" min="0">
+                    <p class="txtAns" style="color: #F2D000;">Enter The Answer:</p>
+                    <input type="number" class="input-field" id="answer" name="input" placeholder="Enter Answer" min="0" max="9">
                     <button type="submit" class="btnGo" onclick="handleInput()">Go!</button>
                 </div>
             </div>
             <div class="imgApi">
                 <img src="" alt="Question Image" id="imgApi" class="color-image">
             </div>
-            <!-- <div id="note"></div> -->
-            <!-- Confetti Container for Animation -->
             <div class="confetti"></div>
         </div>
 

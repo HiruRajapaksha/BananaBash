@@ -41,7 +41,7 @@ if (!$_SESSION['loggedIn']) {
                 </button>
             </form>
 
-\            <form action="ModeHard.php" method="GET" class="category-button">
+            <form action="ModeHard.php" method="GET" class="category-button">
                 <input type="hidden" name="timeLeft" value="40">
                 <input type="hidden" name="difficulty" value="Hard">
                 <button type="submit" class="category-button">
