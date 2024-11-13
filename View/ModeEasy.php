@@ -4,6 +4,9 @@ if (!$_SESSION['loggedIn']) {
     redirect("login.php");
 }
 
+$timeLeft = isset($_GET['timeLeft']) ? (int)$_GET['timeLeft'] : 45; // Default to 45 seconds
+$difficulty = isset($_GET['difficulty']) ? htmlspecialchars($_GET['difficulty']) : 'Easy';
+
 if (isset($_GET['new'])) {
     echo '<script>localStorage.removeItem("timeLeft");</script>';
     echo '<script>localStorage.removeItem("score");</script>';
@@ -33,13 +36,11 @@ if (isset($_GET['new'])) {
 
     <title>QUEEZY BUNCH</title>
     <style>
-        /* Custom styles for the progress bar */
         .progress-bar {
             background-color: #39A93A !important;
             color: white !important;
         }
 
-        /* Animation for congratulations */
         @keyframes confettiAnimation {
             0% {
                 opacity: 1;
@@ -61,7 +62,6 @@ if (isset($_GET['new'])) {
             top: 0;
             left: 0;
             display: none;
-            /* Hidden initially */
         }
 
         .confetti div {
@@ -73,7 +73,7 @@ if (isset($_GET['new'])) {
         }
     </style>
     <script>
-        let timeLeft = parseInt(localStorage.getItem('timeLeft')) || 45;
+        let timeLeft = <?= $timeLeft; ?>;
         let score = parseInt(localStorage.getItem('score')) || 0;
         let numQuestions = parseInt(localStorage.getItem('numQuestions')) || 1;
         let currentLevel = parseInt(localStorage.getItem('currentLevel')) || 1;
@@ -410,8 +410,6 @@ if (isset($_GET['new'])) {
         <?php include 'includes/gameNav.php'; ?>
 
         <div class="container d-flex align-items-center justify-content-between mt-5">
-            <!-- <div class="sTitle">LET'S PLAY!</div> -->
-
             <div class="form-container mx-4 row">
                 <div class="single-Data">
                     <span>Level <span id="level-no" class="fw-bold">1</span></span>
@@ -431,8 +429,6 @@ if (isset($_GET['new'])) {
             <div class="imgApi">
                 <img src="" alt="Question Image" id="imgApi" class="color-image">
             </div>
-            <!-- <div id="note"></div> -->
-            <!-- Confetti Container for Animation -->
             <div class="confetti"></div>
         </div>
 

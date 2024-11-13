@@ -157,7 +157,7 @@ if (!$_SESSION['loggedIn']) {
                         <button class="icon-btn" onclick="changeText(4)" id="button-4"><i class="bi bi-4-circle"></i></button>
                         <button class="icon-btn" onclick="changeText(5)" id="button-5"><i class="bi bi-5-circle"></i></button>
                     </div>
-                    <a href="singlePlayer.php?new=true" id="startbtn-container" style="display: none;">
+                    <a href="gameCategory.php?new=true" id="startbtn-container" style="display: none;">
                         <button class="play-btn mt-4" id="startbtn">Start Playing</button>
                     </a>
                 </div>
