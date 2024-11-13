@@ -12,7 +12,9 @@ include '../Controller/registerHandler.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../Static Assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../Static Assets/css/register.css" type="text/css">
+    <link rel="stylesheet" href="../Static Assets/css/navbar.css">
+    <script src="../Static Assets/assets/js/navbar.js"></script>
     <script src="../Static Assets/js/bgAudio.js"></script>
 
     <title>QUEEZY BUNCH</title>
@@ -70,10 +72,13 @@ include '../Controller/registerHandler.php';
 <body>
 
     <div class="image-container">
-        <nav class="navbar">
-            <h1 class="logo">BANANA BASH</h1>
+    <nav class="navbar">
+            <h1 class="logo"><img src="../Static Assets/assets/images/Logo.png" alt="Banana Bash"></h1>
             <div class="links">
-                <button class="" id="mutebtn"><i class="bi bi-volume-up-fill"></i></button>
+                <div id="mainLinks" class="main-links hidden">
+                    <button id="mutebtn"><i class="bi bi-volume-mute"></i></button>
+                </div>
+                <button id="settingsBtn" class="settings-btn"><i class="bi bi-gear custom-icon"></i></button>
             </div>
         </nav>
 
@@ -117,5 +122,34 @@ include '../Controller/registerHandler.php';
         <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
     </audio>
 </body>
+<script src="../Static Assets/js/pageTransition.js"></script>
+<script>
+    document.getElementById('settingsBtn').addEventListener('click', () => {
+        const mainLinks = document.querySelector('.main-links');
+        mainLinks.classList.toggle('hidden');
+        mainLinks.classList.toggle('visible');
+    });
 
+    document.getElementById('mutebtn').addEventListener('click', () => {
+        const muteButton = document.getElementById('mutebtn');
+        const icon = muteButton.querySelector('i');
+
+        if (muteButton.textContent.trim() === "MUTE") {
+            muteButton.textContent = "UNMUTE";
+            icon.classList.remove('bi-volume-mute');
+            icon.classList.add('bi-volume-up');
+        } else {
+            muteButton.textContent = "MUTE";
+            icon.classList.remove('bi-volume-up');
+            icon.classList.add('bi-volume-mute');
+        }
+    });
+
+    window.addEventListener('load', () => {
+        const muteButton = document.getElementById('mutebtn');
+        const icon = muteButton.querySelector('i');
+
+        icon.classList.add('bi-volume-up');
+    });
+</script>
 </html>
