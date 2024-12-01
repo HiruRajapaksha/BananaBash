@@ -17,7 +17,7 @@ if (!$_SESSION['loggedIn']) {
     <link rel="stylesheet" href="../Static Assets/css/howtoPlay.css" type="text/css">
     <script src="../Static Assets/js/bgAudio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
     <style>
         #lottie-animation {
             width: 300px;
@@ -167,7 +167,7 @@ if (!$_SESSION['loggedIn']) {
     </div>
 
     <audio id="music">
-        <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
+        <source type="audio/mp3" src="./Static Assets/assets/audio/bg_music.mp3">
     </audio>
 
     <script>
@@ -200,11 +200,11 @@ if (!$_SESSION['loggedIn']) {
             title: "Step 2: Choose Your Difficulty Level",
             content: `Pick the difficulty that suits your skill level:
             
-- Easy: Start with 100 seconds and earn an extra 20 seconds for every 3-win streak.
-- Medium: Start with 60 seconds and earn a 10-second bonus for every 3-win streak.
-- Hard: Start with 40 seconds and earn 5 extra seconds for every 3-win streak.
+                    - Easy: Start with 100 seconds and earn an extra 20 seconds for every 3-win streak.
+                    - Medium: Start with 60 seconds and earn a 10-second bonus for every 3-win streak.
+                    - Hard: Start with 40 seconds and earn 5 extra seconds for every 3-win streak.
 
-Each level offers a unique challenge, so choose wisely!`
+                    Each level offers a unique challenge, so choose wisely!`
         },
         {
             title: "Step 3: Aim to Win and Set High Scores!",
@@ -214,11 +214,11 @@ Each level offers a unique challenge, so choose wisely!`
             title: "Step 4: Earn Streak Rewards",
             content: `Winning three games in a row unlocks bonus time based on your difficulty level:
 
-- Easy: +20 seconds
-- Medium: +10 seconds
-- Hard: +5 seconds
+                    - Easy: +20 seconds
+                    - Medium: +10 seconds
+                    - Hard: +5 seconds
 
-This extra time can make the difference between an average score and a high score, so keep up the momentum!`
+                    This extra time can make the difference between an average score and a high score, so keep up the momentum!`
         },
         {
             title: "Step 5: Ready to Start?",
@@ -251,7 +251,7 @@ This extra time can make the difference between an average score and a high scor
             }
         }
     </script>
-    <script src="../Static Assets/js/pageTransition.js"></script>
+    <script src="../Static Assets/assets/js/pageTransition.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typewriter-effect/dist/core.js"></script>
 
 

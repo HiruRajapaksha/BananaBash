@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = mysqli_connect('localhost','root','','queezybunch') or die('connection failed');
+$conn = mysqli_connect('localhost','root','','bananabash') or die('connection failed');
 
 function redirect($url)
 {

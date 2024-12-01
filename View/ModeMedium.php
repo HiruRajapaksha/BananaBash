@@ -45,7 +45,7 @@ if (isset($_GET['new'])) {
             z-index: 1;
         }
     </style>
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
 
     <script>
         let timeLeft = <?= $timeLeft; ?>;
@@ -140,8 +140,8 @@ if (isset($_GET['new'])) {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        score: score, // Send the current score
-                        playerID: '<?= $_SESSION['user_email']; ?>', // Pass the player email ID from the session
+                        score: score, 
+                        playerID: '<?= $_SESSION['user_email']; ?>', 
                     }),
                 })
                 .then(response => response.json())
@@ -161,10 +161,10 @@ if (isset($_GET['new'])) {
             localStorage.removeItem('score');
             localStorage.removeItem('numQuestions');
             localStorage.removeItem('streakCount');
-            timeLeft = 45; // Reset to the default time
-            score = 0; // Reset the score
-            numQuestions = 1; // Reset the level
-            streakCount = 0; // Reset streak count
+            timeLeft = 45; 
+            score = 0; 
+            numQuestions = 1; 
+            streakCount = 0; 
         }
 
         // Add event listener to trigger when the page is about to unload
@@ -175,12 +175,12 @@ if (isset($_GET['new'])) {
         // Initialize the game UI and fetch data when the page loads
         document.addEventListener("DOMContentLoaded", function() {
             updateUI();
-            fetchImage(); // Assuming fetchImage initializes the game
+            fetchImage(); 
         });
 
         function displayStreakPopup() {
-            clearInterval(timer); // Pause the timer
-            streakCount = 0; // Reset streak after showing the popup
+            clearInterval(timer); 
+            streakCount = 0; 
             updateStreakProgressBar();
             console.log("Displaying Streak Popup");
 

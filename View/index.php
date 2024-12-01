@@ -18,7 +18,7 @@ if (!$_SESSION['loggedIn']) {
     <link rel="stylesheet" href="../Static Assets/css/home.css" type="text/css">
     <script src="../Static Assets/js/bgAudio.js"></script>
 
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
     <style>
         body,
         html {
@@ -85,8 +85,6 @@ if (!$_SESSION['loggedIn']) {
     <?php include 'includes/gameNav.php'; ?>
         <div class="container">
             <div class="content">
-                <!-- <img id="quiz-image" src="../Static Assets/assets/images/icon quiz.png" alt=""> -->
-                <!-- <h1 class="indexTitle">Let’s Play And Win!</h1> -->
                 <?php if ($_SESSION['loggedIn']) { ?>
                     <a href="howtoplay.php"><button class="startBtn" id="startbtn">Start Playing</button></a>
                 <?php } ?>
@@ -97,10 +95,9 @@ if (!$_SESSION['loggedIn']) {
         <img src="../Static Assets/assets/images/indexMonkey.png" alt="Banana 2" class="banana banana-right">
     </div>
 
-
     <audio id="music">
-        <source type="audio/mp3" src="../Static Assets/../Static Assets/assets/audio/bg_music.mp3">
+        <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
     </audio>
 </body>
-<script src="../Static Assets/js/pageTransition.js"></script>
+<script src="../Static Assets/assets/js/pageTransition.js"></script>
 </html>

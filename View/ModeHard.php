@@ -45,7 +45,7 @@ if (isset($_GET['new'])) {
             z-index: 1;
         }
     </style>
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
 
     <script>
         let timeLeft = <?= $timeLeft; ?>;

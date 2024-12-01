@@ -22,7 +22,7 @@ include '../Controller/updateHandler.php';
     <link rel="stylesheet" href="../Static Assets/css/navbar.css">
     <script src="../Static Assets/js/bgAudio.js"></script>
 
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
 </head>
 
 <body>

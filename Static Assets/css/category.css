@@ -1,80 +1,80 @@
 body {
-    animation: fadeIn 0.5s ease-in-out;
-    background: linear-gradient(180deg, #094119 9.44%, #39A93A 100%);
-    color: white;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+  animation: fadeIn 0.5s ease-in-out;
+  background: linear-gradient(180deg, #094119 9.44%, #39a93a 100%);
+  color: white;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
 .image-container {
-    background-image: url("../assets/images/categoryBG.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100vh;
-    opacity: 0.8;
-    position: absolute;
-    z-index: 1;
+  background-image: url("../assets/images/categoryBG.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.8;
+  position: absolute;
+  z-index: 1;
 }
 
 h1 {
-    margin-bottom: 30px;
-    font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
 }
 
 .category-container {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
 }
 
 .category-button {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    outline: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  outline: none;
 }
 
 .category-button img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .category-button:hover img {
-    transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .category-button span {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }

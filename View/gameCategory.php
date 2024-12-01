@@ -20,7 +20,7 @@ if (!$_SESSION['loggedIn']) {
 
 <body>
     <div class="image-container">
-        <?php include 'includes/gameNav.php'; ?>
+    <?php include 'includes/gameNav.php'; ?>
         <h1 class="mt-5 mb-5">Select Game Difficulty</h1>
         <div class="category-container">
             <form action="ModeEasy.php" method="GET" class="category-button">
@@ -28,7 +28,7 @@ if (!$_SESSION['loggedIn']) {
                 <input type="hidden" name="difficulty" value="Easy">
                 <button type="submit" class="category-button">
                     <img src="../Static Assets/assets/images/easyMode.png" alt="Easy Mode" />
-                    <span>Easy Mode (100 Seconds)</span>
+                    <span>Easy Mode</span>
                 </button>
             </form>
 
@@ -37,7 +37,7 @@ if (!$_SESSION['loggedIn']) {
                 <input type="hidden" name="difficulty" value="Medium">
                 <button type="submit" class="category-button">
                     <img src="../Static Assets/assets/images/mediumMode.png" alt="Medium Mode" />
-                    <span>Medium Mode (60 Seconds)</span>
+                    <span>Medium Mode</span>
                 </button>
             </form>
 
@@ -46,11 +46,14 @@ if (!$_SESSION['loggedIn']) {
                 <input type="hidden" name="difficulty" value="Hard">
                 <button type="submit" class="category-button">
                     <img src="../Static Assets/assets/images/hardMode.png" alt="Hard Mode" />
-                    <span>Hard Mode (40 Seconds)</span>
+                    <span>Hard Mode</span>
                 </button>
             </form>
         </div>
     </div>
 </body>
+<audio id="music">
+        <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
+    </audio>
 
 </html>
