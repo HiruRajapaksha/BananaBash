@@ -200,7 +200,7 @@ if (!$_SESSION['loggedIn']) {
             title: "Step 2: Choose Your Difficulty Level",
             content: `Pick the difficulty that suits your skill level:
             
-                    - Easy: Start with 100 seconds and earn an extra 20 seconds for every 3-win streak.
+- Easy: Start with 100 seconds and earn an extra 20 seconds for every 3-win streak.
                     - Medium: Start with 60 seconds and earn a 10-second bonus for every 3-win streak.
                     - Hard: Start with 40 seconds and earn 5 extra seconds for every 3-win streak.
 
