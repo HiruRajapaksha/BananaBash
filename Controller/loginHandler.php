@@ -27,7 +27,6 @@ if(isset($_POST['login'])) {
 }
 
 
-// password error notification 
 
 if(isset($message)){
    foreach($message as $message){

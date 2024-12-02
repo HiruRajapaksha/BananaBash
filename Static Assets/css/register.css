@@ -1,4 +1,3 @@
-/* Fade-in effect */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -8,7 +7,6 @@
     }
   }
   
-  /* Fade-out effect */
   @keyframes fadeOut {
     from {
         opacity: 1;
@@ -18,7 +16,6 @@
     }
   }
   
-  /* Apply fade-in effect to body */
   body {
     animation: fadeIn 0.5s ease-in-out;
     background: linear-gradient(180deg, #094119 9.44%, #39A93A 100%);
@@ -28,19 +25,20 @@
     margin: 0;
     padding: 0;
     font-family: monospace;
+    color: white;
+    text-align: center;
   }
   
-  /* Background Image Container */
   .image-container {
     background-image: url("../assets/images/registerBG.jpg");
-    background-size: cover; /* Ensures the image covers the entire screen */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents tiling */
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
     width: 100vw; 
-    height: 100vh; /* Full screen height */
-    opacity: 0.8; /* Reduces the opacity */
-    position: absolute; /* Stays fixed as a background */
-    z-index: -1; /* Keeps it behind other content */
+    height: 100vh; 
+    opacity: 0.8;
+    position: absolute;
+    z-index: -1;
   }
   
   /* Navbar Styles */
@@ -78,7 +76,6 @@
     text-shadow: 0 0 60px rgb(255, 255, 255);
   }
   
-  /* Registration Form Wrapper */
   .regform-wrapper {
     position: absolute;
     top: 55%;
@@ -128,7 +125,6 @@
     color: white;
   }
   
-  /* Registration Buttons */
   .regformBtn,
   .cancelbtn {
     background: transparent;
@@ -156,7 +152,6 @@
     box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
   }
   
-  /* Reset and Already Have Account Section */
   .text-center {
     padding: 10px 15px;
   }

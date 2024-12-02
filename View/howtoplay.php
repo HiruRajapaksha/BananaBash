@@ -17,7 +17,7 @@ if (!$_SESSION['loggedIn']) {
     <link rel="stylesheet" href="../Static Assets/css/howtoPlay.css" type="text/css">
     <script src="../Static Assets/js/bgAudio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
     <style>
         #lottie-animation {
             width: 300px;
@@ -167,7 +167,7 @@ if (!$_SESSION['loggedIn']) {
     </div>
 
     <audio id="music">
-        <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
+        <source type="audio/mp3" src="./Static Assets/assets/audio/bg_music.mp3">
     </audio>
 
     <script>

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    var music = document.getElementById("music");
-    var mutebtn = document.getElementById("mutebtn");
+    var music = document.getElementById("music")
+    var mutebtn = document.getElementById("mutebtn")
 
     mutebtn.onclick = function () {
         if (music.paused) {

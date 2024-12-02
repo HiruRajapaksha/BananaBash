@@ -45,7 +45,7 @@ if (isset($_GET['new'])) {
             z-index: 1;
         }
     </style>
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
 
     <script>
         let timeLeft = <?= $timeLeft; ?>;
@@ -178,7 +178,7 @@ if (isset($_GET['new'])) {
 
         function displayStreakPopup() {
             clearInterval(timer); // Pause the timer
-            streakCount = 0; // Reset streak after showing the popup
+            streakCount = 0; 
             updateStreakProgressBar();
             console.log("Displaying Streak Popup");
 
@@ -198,8 +198,8 @@ if (isset($_GET['new'])) {
                     timeLeft += 20;
                     updateUI();
                 }
-                hideConfetti(); // Hide confetti animation after popup interaction
-                startTimer(); // Resume the timer after popup interaction
+                hideConfetti(); 
+                startTimer(); 
             });
         }
 
@@ -265,7 +265,7 @@ if (isset($_GET['new'])) {
         }
 
         function startTimer() {
-            clearInterval(timer); // Ensure no duplicate timers
+            clearInterval(timer); 
             timer = setInterval(() => {
                 timeLeft--;
                 document.getElementById("timer").textContent = timeLeft;

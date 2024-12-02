@@ -26,7 +26,7 @@ $gameID = $result["id"];
     <link rel="stylesheet" href="../Static Assets/css/bestScored.css" type="text/css">
     <script src="../Static Assets/js/bgAudio.js"></script>
 
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
 </head>
 
 <body>

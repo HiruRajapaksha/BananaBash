@@ -16,16 +16,12 @@ include_once  '../Controller/loginHandler.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../Static Assets/css/login.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="../Static Assets/css/navbar.css">
+    <link rel="stylesheet" href="../Static Assets/css/navbarauth.css">
     <script src="../Static Assets/assets/js/navbar.js"></script>
     <script src="../Static Assets/js/bgAudio.js"></script>
-    <title>QUEEZY BUNCH</title>
+    <title>BANANABASH</title>
     <style>
-        body,
-        html {
-            overflow-x: hidden;
-            overflow-y: hidden;
-        }
+
 
         @keyframes popUpAndDownLeft {
             0% {

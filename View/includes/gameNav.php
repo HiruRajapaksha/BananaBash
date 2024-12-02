@@ -44,7 +44,7 @@
         top: 100%;
         right: 0;
         backdrop-filter: blur(6px);
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.7);
         border-radius: 15px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         border: 1px solid rgba(255, 255, 255, 0.2);
@@ -113,6 +113,21 @@
     .custom-icon {
         font-size: 2rem;
         margin-right: 0.5rem;
+    }
+
+    #mutebtn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        transition: transform 0.3s ease, color 0.3s ease;
+        transform: scale(2.0);
+    }
+
+    #mutebtn:hover {
+        color: #FFDB00;
+        transform: scale(2.3);
     }
 </style>
 
