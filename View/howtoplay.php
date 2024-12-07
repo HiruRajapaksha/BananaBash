@@ -167,7 +167,7 @@ if (!$_SESSION['loggedIn']) {
     </div>
 
     <audio id="music">
-        <source type="audio/mp3" src="./Static Assets/assets/audio/bg_music.mp3">
+        <source type="audio/mp3" src="../Static Assets/assets/audio/bg_music.mp3">
     </audio>
 
     <script>
